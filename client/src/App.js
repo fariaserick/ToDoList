@@ -11,6 +11,7 @@ class App extends Component {
       fetchData: [],
       content: ""
     };
+    this.hideCopletedTasks = this.hideCopletedTasks.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.deleteForm = this.deleteForm.bind(this);
     this.editForm = this.editForm.bind(this);
@@ -36,18 +37,7 @@ class App extends Component {
           });
         });
     } else {
-      fetch("/api/todolist")
-        .then(response => {
-          return response.json();
-        })
-        .then(responseJson => {
-          this.setState(prevState => {
-            return {
-              fetchDataLoaded: true,
-              fetchData: responseJson.data.todolist
-            };
-          });
-        });
+      this.fetchAllData();
     }
   }
 
